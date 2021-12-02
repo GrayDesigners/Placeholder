@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
             GetComponent<EdgeCollider2D>().enabled = true;
     }
            
-
+    //check if player is grounded
     private bool IsGrounded()
     {
        RaycastHit2D rch2d = Physics2D.BoxCast(boxColider.bounds.center, boxColider.bounds.size, 0f, Vector2.down*0.1f,0.01f, layerMask);
