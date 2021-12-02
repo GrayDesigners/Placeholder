@@ -15,7 +15,7 @@ TagManager:
   - Floor
   - Actor
   - Platform
-  - 
+  - rock
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: Actor
     uniqueID: 1261211319
+    locked: 0
+  - name: Rock
+    uniqueID: 3808936363
     locked: 0
