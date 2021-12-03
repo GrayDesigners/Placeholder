@@ -671,6 +671,8 @@ MonoBehaviour:
   platformMask:
     serializedVersion: 2
     m_Bits: 256
+  movementSpeed: 5
+  jumpHeight: 8
 --- !u!212 &1098422710
 SpriteRenderer:
   m_ObjectHideFlags: 0

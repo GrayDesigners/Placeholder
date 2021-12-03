@@ -5,15 +5,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField]private LayerMask layerMask;
-    [SerializeField]private LayerMask platformMask;
+    //Declations available in editor
+    [SerializeField]private LayerMask layerMask; //Ground's layers reference
+    [SerializeField]private LayerMask platformMask; //Platform layer reference
+    [SerializeField]private float movementSpeed;
+    [SerializeField]private float jumpHeight;
 
-
+    //Declations unavailable in editor
     private bool bCanFall = false;
     private Rigidbody2D rb;
     private BoxCollider2D boxColider;
     private Vector3 moveDelta;
-    private RaycastHit2D hit;
 
 
     private void Start()
@@ -32,17 +34,17 @@ public class PlayerMovement : MonoBehaviour
 
         //Swap sprite direction, wether youre going right or left
         if (moveDelta.x > 0)
-            transform.localScale = Vector3.one;
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         else if (moveDelta.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
 
         // Making move
-            rb.velocity = new Vector2(x * 10f, rb.velocity.y);
+            rb.velocity = new Vector2(x * movementSpeed, rb.velocity.y);
 
         //Jump
         if (IsGrounded() && y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, y * 10f);
+            rb.velocity = new Vector2(rb.velocity.x, y * jumpHeight);
        
         }
         //Falling off
