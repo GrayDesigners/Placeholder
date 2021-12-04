@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class Parallax : MonoBehaviour
 {
-    //Declations available in editor
-    [SerializeField] private Camera cam;
-    [SerializeField] private Transform subject;
-
     //Declations unavailable in editor
-    private Vector2 startPosition;
-    private float startZ;
-    private Vector2 travel => (Vector2)cam.transform.position - startPosition;
+    private float lenght, startpos;
 
-    private float distanceFromSubject => transform.position.z - subject.position.z;
-    private float clippingPlane => (cam.transform.position.z + (distanceFromSubject > 0 ? cam.farClipPlane : cam.nearClipPlane));
-    private float parallaxFactor => Mathf.Abs(distanceFromSubject) / clippingPlane;
+    //Declations available in editor
+    public GameObject cam;
+    public float parallaxEffect; //how fost object will move (1 = stand still , 0 at the same speed as camera)
 
     private void Start()
     {
-        startPosition = transform.position;
-        startZ = transform.position.z;
+        startpos = transform.position.x;
+        lenght = GetComponent<SpriteRenderer>().bounds.size.x;
     }
-
-    private void LateUpdate()
+    private void Update()
     {
-        Vector3 delta = Vector3.zero;
-        Vector2 newPosition = startPosition + travel * parallaxFactor;
-        transform.position = new Vector3(newPosition.x, newPosition.y, startZ);
-    }
+        float temp = (cam.transform.position.x * (1 - parallaxEffect));
+        float distance = (cam.transform.position.x * parallaxEffect);
+        
+        //making parallax effect
+        transform.position = new Vector3(startpos + distance, transform.position.y, transform.position.z);
 
+        //changing background position to make endless level effect
+        if (temp > startpos + lenght)
+            startpos += lenght;
+        else if (temp < startpos - lenght)
+            startpos -= lenght;
+    }
 }
