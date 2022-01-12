@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //Declations available in editor
+    //variables available in editor
     [SerializeField]private LayerMask layerMask; //Ground's layers reference
     [SerializeField]private LayerMask platformMask; //Platform layer reference
     [SerializeField]private float movementSpeed;
     [SerializeField]private float jumpHeight;
 
-    //Declations unavailable in editor
+    //variables unavailable in editor
     private bool bCanFall = false;
     private Rigidbody2D rb;
     private BoxCollider2D boxColider;
@@ -25,7 +25,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {
+    {   
+        //Movement bindings
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Jump");
 
